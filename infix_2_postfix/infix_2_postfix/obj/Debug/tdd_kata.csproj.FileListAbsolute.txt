@@ -1,0 +1,15 @@
+c:\tdd\tdd_kata\tdd_kata\obj\Debug\tdd_kata.csprojResolveAssemblyReference.cache
+c:\tdd\tdd_kata\tdd_kata\bin\Debug\tdd_kata.dll
+c:\tdd\tdd_kata\tdd_kata\bin\Debug\tdd_kata.pdb
+c:\tdd\tdd_kata\tdd_kata\bin\Debug\developwithpassion.specifications.dll
+c:\tdd\tdd_kata\tdd_kata\bin\Debug\developwithpassion.specifications.rhinomocks.dll
+c:\tdd\tdd_kata\tdd_kata\bin\Debug\Machine.Fakes.Adapters.RhinoMocks.dll
+c:\tdd\tdd_kata\tdd_kata\bin\Debug\Machine.Fakes.dll
+c:\tdd\tdd_kata\tdd_kata\bin\Debug\Machine.Specifications.Clr4.dll
+c:\tdd\tdd_kata\tdd_kata\bin\Debug\Machine.Specifications.dll
+c:\tdd\tdd_kata\tdd_kata\bin\Debug\Rhino.Mocks.dll
+c:\tdd\tdd_kata\tdd_kata\bin\Debug\developwithpassion.specifications.pdb
+c:\tdd\tdd_kata\tdd_kata\bin\Debug\developwithpassion.specifications.rhinomocks.pdb
+c:\tdd\tdd_kata\tdd_kata\bin\Debug\Rhino.Mocks.xml
+c:\tdd\tdd_kata\tdd_kata\obj\Debug\tdd_kata.dll
+c:\tdd\tdd_kata\tdd_kata\obj\Debug\tdd_kata.pdb

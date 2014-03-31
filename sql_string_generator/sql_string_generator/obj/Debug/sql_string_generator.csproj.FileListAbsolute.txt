@@ -1,0 +1,15 @@
+C:\tdd\sql_string_generator\sql_string_generator\obj\Debug\sql_string_generator.csprojResolveAssemblyReference.cache
+C:\tdd\sql_string_generator\sql_string_generator\bin\Debug\sql_string_generator.dll
+C:\tdd\sql_string_generator\sql_string_generator\bin\Debug\sql_string_generator.pdb
+C:\tdd\sql_string_generator\sql_string_generator\bin\Debug\developwithpassion.specifications.dll
+C:\tdd\sql_string_generator\sql_string_generator\bin\Debug\developwithpassion.specifications.rhinomocks.dll
+C:\tdd\sql_string_generator\sql_string_generator\bin\Debug\Machine.Fakes.Adapters.RhinoMocks.dll
+C:\tdd\sql_string_generator\sql_string_generator\bin\Debug\Machine.Fakes.dll
+C:\tdd\sql_string_generator\sql_string_generator\bin\Debug\Machine.Specifications.Clr4.dll
+C:\tdd\sql_string_generator\sql_string_generator\bin\Debug\Machine.Specifications.dll
+C:\tdd\sql_string_generator\sql_string_generator\bin\Debug\Rhino.Mocks.dll
+C:\tdd\sql_string_generator\sql_string_generator\bin\Debug\developwithpassion.specifications.pdb
+C:\tdd\sql_string_generator\sql_string_generator\bin\Debug\developwithpassion.specifications.rhinomocks.pdb
+C:\tdd\sql_string_generator\sql_string_generator\bin\Debug\Rhino.Mocks.xml
+C:\tdd\sql_string_generator\sql_string_generator\obj\Debug\sql_string_generator.dll
+C:\tdd\sql_string_generator\sql_string_generator\obj\Debug\sql_string_generator.pdb
