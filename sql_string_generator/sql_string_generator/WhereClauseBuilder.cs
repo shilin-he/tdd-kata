@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System;
+using System.Linq.Expressions;
+using System.Text;
 using System.Threading;
 using Rhino.Mocks;
 
@@ -28,6 +30,11 @@ namespace sql_string_generator
       }
 
       return where_clause.ToString().TrimEnd(new[] {','});
+    }
+
+    public string build(Expression<Func<TableModel, bool>> filter)
+    {
+      throw new NotImplementedException();
     }
   }
 }

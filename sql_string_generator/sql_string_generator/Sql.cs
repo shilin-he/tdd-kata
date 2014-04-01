@@ -32,8 +32,23 @@ namespace sql_string_generator
       var set_clause_builder = new SetClauseBuilder<Model>(get_table_mapping(), new ValueToSqlLiteralConverter(converter_registry), get_property_value);
       var update_clause_builder = new UpdateClauseBuilder<Model>(get_table_mapping());
       var where_clause_builder = new WhereClauseBuilder<Model>(get_table_mapping(), get_property_value);
-      var build_sql_statements = new UpdateSqlStatementBuilder<Model>(set_clause_builder, update_clause_builder, where_clause_builder);
-      return build_sql_statements.build(item);
+      var sql_builder = new UpdateSqlStatementBuilder<Model>(set_clause_builder, update_clause_builder, where_clause_builder);
+      return sql_builder.build(item);
+    }
+
+    public static string insert(Model item)
+    {
+      var values_clause_builder = new ValuesClauseBuilder<Model>(get_table_mapping(), get_property_value, new ValueToSqlLiteralConverter(converter_registry));
+      var sql_builder = new InsertSqlStatementBuilder<Model>(get_table_mapping(), values_clause_builder);
+      return sql_builder.build(item);
+    }
+
+    public static string delete(Model item)
+    {
+      var from_clause_builder = new FromClauseBuilder<Model>(get_table_mapping());
+      var where_clause_builder = new WhereClauseBuilder<Model>(get_table_mapping(), get_property_value);
+      var sql_builder = new DeleteSqlStatementBuilder<Model>(where_clause_builder, from_clause_builder);
+      return sql_builder.build(item);
     }
   }
 }
