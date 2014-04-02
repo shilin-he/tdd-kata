@@ -61,11 +61,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BooleanToSqlLiteralConverter.cs" />
+    <Compile Include="ChainedOrderByBuilder.cs" />
     <Compile Include="ColumnNameRetriever.cs" />
     <Compile Include="DeleteSqlStatementBuilder.cs" />
     <Compile Include="FromClauseBuilder.cs" />
+    <Compile Include="IBuildAnOrderBy.cs" />
     <Compile Include="IBuildDeleteSqlStatements.cs" />
     <Compile Include="IBuildInsertSqlStatements.cs" />
+    <Compile Include="IBuildOrderByClauses .cs" />
     <Compile Include="IBuildSelectClauses.cs" />
     <Compile Include="IBuildSelectSqlStatements.cs" />
     <Compile Include="IBuildSetClauses.cs" />
@@ -74,12 +77,15 @@
     <Compile Include="IBuildUpdateSqlStatements.cs" />
     <Compile Include="IBuildValuesClauses.cs" />
     <Compile Include="IBuildWhereClauses.cs" />
+    <Compile Include="ICombineOrderBuilders.cs" />
     <Compile Include="IConvertOneTypeOfValueToSqlLiteral.cs" />
     <Compile Include="IConvertSpecificTypeOfValueToSqlLiteral.cs" />
     <Compile Include="IConvertValueToSqlLiteral.cs" />
     <Compile Include="IBuildFromClauses.cs" />
+    <Compile Include="ICreateAnOrderByBuilder.cs" />
     <Compile Include="ICreateModels.cs" />
     <Compile Include="ICreateSelectClauses.cs" />
+    <Compile Include="ICustomSortOrder.cs" />
     <Compile Include="IDetermineIfCanConvertAValueToSqlLiteral.cs" />
     <Compile Include="IFindConverterWhichCanConvertTheValue.cs" />
     <Compile Include="IGetPropertyValueUsingPropertyName.cs" />
@@ -88,7 +94,13 @@
     <Compile Include="InsertSqlStatementBuilder.cs" />
     <Compile Include="IRetrieveColumnName.cs" />
     <Compile Include="IRetrieveTableName.cs" />
+    <Compile Include="NullOrderByBuilder.cs" />
     <Compile Include="OneTypeOfValueToSqlLiteralConverter.cs" />
+    <Compile Include="OrderByAscending.cs" />
+    <Compile Include="OrderByBuilder.cs" />
+    <Compile Include="OrderByBuilderFactory.cs" />
+    <Compile Include="OrderByClauseBuilder.cs" />
+    <Compile Include="OrderByDescending.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -96,11 +108,18 @@
     <Compile Include="SelectFactory.cs" />
     <Compile Include="SelectSqlStatementBuilder.cs" />
     <Compile Include="SetClauseBuilder.cs" />
+    <Compile Include="SortOrders.cs" />
     <Compile Include="specs\BooleanToSqlLiteralConverterSpecs.cs" />
+    <Compile Include="specs\ChainedOrderByBuilderSpecs.cs" />
     <Compile Include="specs\ColumnNameRetrieverSpecs.cs" />
     <Compile Include="specs\DeleteIntegrationSpecs.cs" />
     <Compile Include="specs\InsertIntegrationSpecs.cs" />
     <Compile Include="specs\InsertSqlStatementBuilderSpecs.cs" />
+    <Compile Include="specs\OrderByAscendingSpecs.cs" />
+    <Compile Include="specs\OrderByBuilderFactorySpecs.cs" />
+    <Compile Include="specs\OrderByBuilderSpecs.cs" />
+    <Compile Include="specs\OrderByClauseBuilderSpecs.cs" />
+    <Compile Include="specs\OrderByDescendingSpecs.cs" />
     <Compile Include="specs\SelectSqlStatementBuilderSpecs.cs" />
     <Compile Include="specs\SqlGatewaySpecs.cs" />
     <Compile Include="specs\DeleteSqlStatementBuilderSpecs.cs" />
