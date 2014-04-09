@@ -38,12 +38,19 @@ namespace sql_string_generator
 
     public string build()
     {
-      return select_clause_builder.build() + from_clause_builder.build() + where_clause_builder.build(filter) + order_by_clause_builder.build(order_builder);
+      var where = where_clause_builder.build(filter);
+      var order_by = order_by_clause_builder.build(order_builder);
+
+      return select_clause_builder.build() + Environment.NewLine +
+             from_clause_builder.build() +
+             (string.IsNullOrEmpty(where) ? string.Empty : Environment.NewLine + where) +
+             (string.IsNullOrEmpty(order_by) ? string.Empty : Environment.NewLine + order_by);
     }
 
     public IBuildSelectSqlStatements<Model> where(Expression<Func<Model, bool>> filter)
     {
-      return new SelectSqlStatementBuilder<Model>(select_clause_builder, from_clause_builder, where_clause_builder, order_by_clause_builder, order_builder_factory, filter, order_builder);
+      return new SelectSqlStatementBuilder<Model>(select_clause_builder, 
+        from_clause_builder, where_clause_builder, order_by_clause_builder, order_builder_factory, filter, order_builder);
     }
 
     public IBuildSelectSqlStatements<Model> order_by<PropertyType>(Expression<Func<Model, PropertyType>> property_accessor, ICustomSortOrder sort_order)

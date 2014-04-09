@@ -1,4 +1,5 @@
-﻿ using Machine.Specifications;
+﻿ using System;
+ using Machine.Specifications;
  using developwithpassion.specifications.rhinomocks;
  using developwithpassion.specifications.extensions;
 

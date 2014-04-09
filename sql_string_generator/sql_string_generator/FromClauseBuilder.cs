@@ -1,4 +1,6 @@
-﻿namespace sql_string_generator
+﻿using System;
+
+namespace sql_string_generator
 {
   public class FromClauseBuilder<TableModel> : IBuildFromClauses<TableModel>
   {

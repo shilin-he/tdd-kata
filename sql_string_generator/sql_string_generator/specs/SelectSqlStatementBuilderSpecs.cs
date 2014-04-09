@@ -27,12 +27,12 @@ namespace sql_string_generator.specs
         select_clause_builder = depends.on<IBuildSelectClauses<Product>>();
         select_clause_builder.setup(x => x.build()).Return("select product_id, product_name, discontinued");
         from_clause_builder = depends.on<IBuildFromClauses<Product>>();
-        from_clause_builder.setup(x => x.build()).Return(Environment.NewLine + "from product_tbl");
+        from_clause_builder.setup(x => x.build()).Return("from product_tbl");
         where_clause_builder = depends.on<IBuildWhereClauses<Product>>();
-        where_clause_builder.setup(x => x.build(filter)).Return(Environment.NewLine + "where discontinued = 0");
+        where_clause_builder.setup(x => x.build(filter)).Return("where discontinued = 0");
         order_builder = depends.on<IBuildAnOrderBy>();
         order_by_clause_builder = depends.on<IBuildOrderByClauses<Product>>();
-        order_by_clause_builder.setup(x => x.build(order_builder)).Return(Environment.NewLine + "order by product_name desc");
+        order_by_clause_builder.setup(x => x.build(order_builder)).Return("order by product_name desc");
         depends.on(filter);
       };
 

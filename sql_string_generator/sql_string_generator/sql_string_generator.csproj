@@ -64,6 +64,7 @@
     <Compile Include="ChainedOrderByBuilder.cs" />
     <Compile Include="ColumnNameRetriever.cs" />
     <Compile Include="DeleteSqlStatementBuilder.cs" />
+    <Compile Include="ExpressionToSqlTranslator.cs" />
     <Compile Include="FromClauseBuilder.cs" />
     <Compile Include="IBuildAnOrderBy.cs" />
     <Compile Include="IBuildDeleteSqlStatements.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="ICreateSelectClauses.cs" />
     <Compile Include="ICustomSortOrder.cs" />
     <Compile Include="IDetermineIfCanConvertAValueToSqlLiteral.cs" />
+    <Compile Include="IExpressionToSqlTranslator.cs" />
     <Compile Include="IFindConverterWhichCanConvertTheValue.cs" />
     <Compile Include="IGetPropertyValueUsingPropertyName.cs" />
     <Compile Include="IGetTableMapping.cs" />
@@ -104,7 +106,15 @@
     <Compile Include="Person.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="query_play_ground\DbQueryProvider.cs" />
+    <Compile Include="query_play_ground\Northwind.cs" />
+    <Compile Include="query_play_ground\ObjectReader.cs" />
+    <Compile Include="query_play_ground\Query.cs" />
+    <Compile Include="query_play_ground\QueryProvider.cs" />
+    <Compile Include="query_play_ground\QueryTranslator.cs" />
+    <Compile Include="query_play_ground\TypeSystem.cs" />
     <Compile Include="SelectBuilder.cs" />
+    <Compile Include="SelectClauseBuilder.cs" />
     <Compile Include="SelectFactory.cs" />
     <Compile Include="SelectSqlStatementBuilder.cs" />
     <Compile Include="SetClauseBuilder.cs" />
@@ -113,6 +123,7 @@
     <Compile Include="specs\ChainedOrderByBuilderSpecs.cs" />
     <Compile Include="specs\ColumnNameRetrieverSpecs.cs" />
     <Compile Include="specs\DeleteIntegrationSpecs.cs" />
+    <Compile Include="specs\ExpressionToSqlTranslatorSpecs.cs" />
     <Compile Include="specs\InsertIntegrationSpecs.cs" />
     <Compile Include="specs\InsertSqlStatementBuilderSpecs.cs" />
     <Compile Include="specs\OrderByAscendingSpecs.cs" />
@@ -120,8 +131,8 @@
     <Compile Include="specs\OrderByBuilderSpecs.cs" />
     <Compile Include="specs\OrderByClauseBuilderSpecs.cs" />
     <Compile Include="specs\OrderByDescendingSpecs.cs" />
+    <Compile Include="specs\SelectClauseBuilderSpecs.cs" />
     <Compile Include="specs\SelectSqlStatementBuilderSpecs.cs" />
-    <Compile Include="specs\SqlGatewaySpecs.cs" />
     <Compile Include="specs\DeleteSqlStatementBuilderSpecs.cs" />
     <Compile Include="specs\FromClauseFactorySpecs.cs" />
     <Compile Include="specs\OneTypeOfValueToSqlLiteralConverterSpecs.cs" />
@@ -138,7 +149,6 @@
     <Compile Include="specs\ValueToSqlLiteralConverterSpecs.cs" />
     <Compile Include="specs\WhereClauseBuilderSpecs.cs" />
     <Compile Include="Sql.cs" />
-    <Compile Include="SqlGateway.cs" />
     <Compile Include="StringToSqlLiteralConverter.cs" />
     <Compile Include="TableMapping.cs" />
     <Compile Include="UpdateSqlStatementBuilder.cs" />
@@ -157,6 +167,9 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="to_do.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="query_play_ground\specs\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
