@@ -26,7 +26,7 @@ namespace template_engine
       foreach (var template_string in template_strings)
       {
         sb.Append(template.Substring(index, template_string.start - index));
-        sb.Append(instance_value_provider.convert(view_model, template_string.value));
+        sb.Append(instance_value_provider.resolve(view_model, template_string.value));
         index = template_string.end + 1;
       }
 

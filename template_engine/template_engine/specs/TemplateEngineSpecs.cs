@@ -38,8 +38,8 @@ namespace template_engine.specs
         template_string_finder.setup(x => x.find(template)).Return(template_strings);
 
         value_provider = depends.on<IProvideInstanceValues>();
-        value_provider.setup(x => x.convert(view_model, first_template_string.value)).Return(view_model.first_name);
-        value_provider.setup(x => x.convert(view_model, second_template_string.value)).Return(view_model.last_name);
+        value_provider.setup(x => x.resolve(view_model, first_template_string.value)).Return(view_model.first_name);
+        value_provider.setup(x => x.resolve(view_model, second_template_string.value)).Return(view_model.last_name);
       };
 
       Because b = () =>
@@ -57,11 +57,5 @@ namespace template_engine.specs
       static ITemplateString second_template_string;
       static IProvideInstanceValues value_provider;
     }
-  }
-
-  class Person
-  {
-    public string first_name { get; set; }
-    public string last_name { get; set; }
   }
 }

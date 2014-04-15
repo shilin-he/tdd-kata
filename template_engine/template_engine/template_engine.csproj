@@ -61,9 +61,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IFindTemplateStrings.cs" />
+    <Compile Include="InstanceValueResolver.cs" />
     <Compile Include="IProvideInstanceValues.cs" />
     <Compile Include="IRenderTemplates.cs" />
     <Compile Include="ITemplateString.cs" />
+    <Compile Include="specs\InstanceValueFactorySpecs.cs" />
+    <Compile Include="specs\Person.cs" />
+    <Compile Include="specs\TemplateEngineIntegrationSpecs.cs" />
     <Compile Include="specs\TemplateStringFinderSpecs.cs" />
     <Compile Include="TemplateEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

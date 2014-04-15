@@ -2,6 +2,6 @@
 {
   public interface IProvideInstanceValues
   {
-    string convert<TModel>(TModel model, string template_value);
+    string resolve(object model, string property_name);
   }
 }

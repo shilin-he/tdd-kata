@@ -8,7 +8,6 @@
 
 namespace template_engine.specs
 {   
-
   [Subject(typeof(RegexTemplateStringFinder))]
   public class RegexTemplateStringFinderSpecs
   {
