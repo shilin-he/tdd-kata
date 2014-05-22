@@ -21,7 +21,7 @@ namespace max.web.specs
       {
         Establish c = () =>
         {
-          the_request = fake.an<IContainInfoForOneWebRequest>();
+          the_request = fake.an<IContainRequestInfo>();
           the_command = fake.an<IProcessOneWebRequest>();
           the_command.setup(x => x.can_process(the_request)).Return(true);
           commands = Enumerable.Range(1, 10).Select(x => fake.an<IProcessOneWebRequest>()).ToList();
@@ -36,7 +36,7 @@ namespace max.web.specs
           result.can_process(the_request).ShouldBeTrue();
 
         static IProcessOneWebRequest result;
-        static IContainInfoForOneWebRequest the_request;
+        static IContainRequestInfo the_request;
         static IProcessOneWebRequest the_command;
         static IList<IProcessOneWebRequest> commands;
       }
@@ -45,7 +45,7 @@ namespace max.web.specs
       {
         Establish c = () =>
         {
-          the_request = fake.an<IContainInfoForOneWebRequest>();
+          the_request = fake.an<IContainRequestInfo>();
           special_case_command = fake.an<IProcessOneWebRequest>();
           commands = Enumerable.Range(1, 10).Select(x => fake.an<IProcessOneWebRequest>()).ToList();
           depends.on<IEnumerable<IProcessOneWebRequest>>(commands);
@@ -63,7 +63,7 @@ namespace max.web.specs
           result.ShouldEqual(special_case_command);
 
         static IProcessOneWebRequest result;
-        static IContainInfoForOneWebRequest the_request;
+        static IContainRequestInfo the_request;
         static IList<IProcessOneWebRequest> commands;
         static IProcessOneWebRequest special_case_command;
       }

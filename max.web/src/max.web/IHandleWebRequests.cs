@@ -2,6 +2,6 @@
 {
   public interface IHandleWebRequests
   {
-    IContainResponseInfo handle(IContainInfoForOneWebRequest the_request);
+    IContainResponseInfo handle(IContainRequestInfo the_request);
   }
 }

@@ -19,7 +19,7 @@ namespace max.web.specs
       Establish c = () =>
       {
         command = fake.an<IProcessOneWebRequest>();
-        the_request = fake.an<IContainInfoForOneWebRequest>();
+        the_request = fake.an<IContainRequestInfo>();
         command_registry = depends.on<IFindCommandsToProcessRequests>();
         command_registry.setup(x => x.find_command_can_handle(the_request)).Return(command);
       };
@@ -31,7 +31,7 @@ namespace max.web.specs
         command.received(x => x.process(the_request));
 
       static IProcessOneWebRequest command;
-      static IContainInfoForOneWebRequest the_request;
+      static IContainRequestInfo the_request;
       static IFindCommandsToProcessRequests command_registry;
     }
   }

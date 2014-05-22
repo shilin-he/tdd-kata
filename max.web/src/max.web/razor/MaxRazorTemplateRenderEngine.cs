@@ -3,6 +3,7 @@ using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Web.Razor;
 using Microsoft.CSharp;
 
@@ -23,7 +24,8 @@ namespace max.web.razor
         "Microsoft.CSharp.dll",
         "mscorlib.dll",
         typeof(RazorEngineHost).Assembly.Location,
-        GetType().Assembly.Location
+        GetType().Assembly.Location,
+        Assembly.GetCallingAssembly().Location
       };
     }
 
@@ -39,14 +41,6 @@ namespace max.web.razor
       host.NamespaceImports.Add("System");
 
       return new RazorTemplateEngine(host);
-    }
-
-    void add_referenced_assembly(Type type)
-    {
-      string assembly_name = Path.GetFileName(type.Assembly.Location);
-
-      if (!referenced_assemblies.Contains(assembly_name))
-        referenced_assemblies.Add(assembly_name);
     }
 
     RazorTemplateBase compile(string template)
@@ -68,13 +62,20 @@ namespace max.web.razor
       CompilerResults compiler_results = c_sharp_code_provider.CompileAssemblyFromDom(
         compiler_options, generator_results.GeneratedCode);
 
+      if (compiler_results.Errors.HasErrors)
+      {
+        CompilerError err = compiler_results.Errors
+          .OfType<CompilerError>().First(ce => !ce.IsWarning);
+        throw new Exception(String.Format("Error Compiling Template: ({0}, {1}) {2}",
+                                      err.Line, err.Column, err.ErrorText));
+      }
+
       var type = compiler_results.CompiledAssembly.GetType(string.Format("{0}.{1}", DefaultRazorNamespace, DefaultRazorClasName));
       return Activator.CreateInstance(type) as RazorTemplateBase;
     }
 
     public string render<ViewModel>(IContainTemplateInfo template, ViewModel view_model)
     {
-      add_referenced_assembly(typeof(ViewModel));
       var razor_template = compile(template.content);
       return razor_template.render(view_model);
     }

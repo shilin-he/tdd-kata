@@ -2,5 +2,6 @@
 {
   public interface IContainResponseInfo
   {
+    string content { get; }
   }
 }

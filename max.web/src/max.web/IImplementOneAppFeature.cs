@@ -2,6 +2,6 @@
 {
   public interface IImplementOneAppFeature
   {
-    IContainResponseInfo process(IContainInfoForOneWebRequest the_request);
+    IContainResponseInfo process(IContainRequestInfo the_request);
   }
 }

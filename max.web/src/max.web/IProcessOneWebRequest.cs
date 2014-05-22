@@ -2,7 +2,7 @@
 {
   public interface IProcessOneWebRequest
   {
-    IContainResponseInfo process(IContainInfoForOneWebRequest the_request);
-    bool can_process(IContainInfoForOneWebRequest the_request);
+    IContainResponseInfo process(IContainRequestInfo the_request);
+    bool can_process(IContainRequestInfo the_request);
   }
 }

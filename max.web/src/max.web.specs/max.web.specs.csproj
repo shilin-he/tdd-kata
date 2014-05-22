@@ -66,8 +66,10 @@
   <ItemGroup>
     <Compile Include="AnItem.cs" />
     <Compile Include="CommandRegistrySpecs.cs" />
+    <Compile Include="RazorFileTemplateSpecs.cs" />
     <Compile Include="RazorTempalteRenderEngineSpecs.cs" />
     <Compile Include="MaxRazorTemplateRenderEngineSpec.cs" />
+    <Compile Include="ResponseSpecs.cs" />
     <Compile Include="ViewTemplateRegistrySpecs.cs" />
     <Compile Include="WebHandlerSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -77,6 +79,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="stubs\test_razor.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\max.web\max.web.csproj">
@@ -84,9 +89,7 @@
       <Name>max.web</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="stubs\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

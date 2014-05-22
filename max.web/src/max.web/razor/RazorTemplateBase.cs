@@ -11,7 +11,7 @@ namespace max.web.razor
       buffer = new StringBuilder();
     }
 
-    public dynamic view_model { get; set; }
+    public dynamic Model { get; set; }
 
     public abstract void Execute();
 
@@ -31,7 +31,7 @@ namespace max.web.razor
 
     public string render<ViewModel>(ViewModel vm)
     {
-      view_model = vm;
+      this.Model = vm;
       Execute();
       return buffer.ToString();
     }

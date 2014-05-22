@@ -9,7 +9,7 @@
       this.command_registery = command_registery;
     }
 
-    public IContainResponseInfo handle(IContainInfoForOneWebRequest the_request)
+    public IContainResponseInfo handle(IContainRequestInfo the_request)
     {
       IProcessOneWebRequest command = command_registery.find_command_can_handle(the_request);
       return command.process(the_request);

@@ -17,7 +17,7 @@ namespace max.web.specs
     {
       Establish c = () =>
       {
-        the_request = fake.an<IContainInfoForOneWebRequest>();
+        the_request = fake.an<IContainRequestInfo>();
         depends.on<IMatchOneRequest>(x =>
         {
           x.ShouldEqual(the_request);
@@ -32,14 +32,14 @@ namespace max.web.specs
         result.ShouldBeTrue();
 
       static bool result;
-      static IContainInfoForOneWebRequest the_request;
+      static IContainRequestInfo the_request;
     }
 
     public class when_process_the_request : concern
     {
       Establish c = () =>
       {
-        the_request = fake.an<IContainInfoForOneWebRequest>();
+        the_request = fake.an<IContainRequestInfo>();
         feature = depends.on<IImplementOneAppFeature>();
       };
 
@@ -50,7 +50,7 @@ namespace max.web.specs
         feature.received(x => x.process(the_request));
 
       static IImplementOneAppFeature feature;
-      static IContainInfoForOneWebRequest the_request;
+      static IContainRequestInfo the_request;
     }
   }
 }

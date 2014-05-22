@@ -21,10 +21,11 @@ namespace max.web.specs
       Establish c = () =>
       {
         template = fake.an<IContainTemplateInfo>();
-        template.setup(x => x.content).Return("blah: @view_model.foo -- @view_model.bar");
+        template.setup(x => x.content).Return("blah: @Model.foo -- @Model.bar");
         view_model = new AnItem { foo = "foo", bar = new DateTime(2014, 1, 1) };
         rendered_template = "blah: foo -- 2014-01-01 12:00:00 AM";
       };
+
       Because b = () =>
         result = sut.render(template, view_model);
 

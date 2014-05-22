@@ -2,6 +2,6 @@
 {
   public interface IFindCommandsToProcessRequests
   {
-    IProcessOneWebRequest find_command_can_handle(IContainInfoForOneWebRequest the_request);
+    IProcessOneWebRequest find_command_can_handle(IContainRequestInfo the_request);
   }
 }

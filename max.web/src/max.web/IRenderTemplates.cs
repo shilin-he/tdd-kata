@@ -1,4 +1,4 @@
-﻿namespace max.web.razor
+namespace max.web
 {
   public interface IRenderTemplates
   {

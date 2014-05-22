@@ -1,4 +1,6 @@
-﻿namespace max.web.razor
+﻿using max.web.razor;
+
+namespace max.web
 {
   public class DisplayEngine : IDisplayInformation
   {

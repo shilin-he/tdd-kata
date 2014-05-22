@@ -17,7 +17,7 @@ namespace max.web.specs
     {
       Establish c = () =>
       {
-        the_request = fake.an<IContainInfoForOneWebRequest>();
+        the_request = fake.an<IContainRequestInfo>();
         report = new AnItem();
         depends.on<IGetAReportUsingARequest<AnItem>>(x =>
         {
@@ -44,7 +44,7 @@ namespace max.web.specs
         result.ShouldEqual(response);
 
       static AnItem report;
-      static IContainInfoForOneWebRequest the_request;
+      static IContainRequestInfo the_request;
       static IDisplayInformation display_engine;
       static string display_result;
       static IContainResponseInfo response;

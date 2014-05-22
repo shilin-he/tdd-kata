@@ -11,12 +11,12 @@
       this.feature = feature;
     }
 
-    public IContainResponseInfo process(IContainInfoForOneWebRequest the_request)
+    public IContainResponseInfo process(IContainRequestInfo the_request)
     {
       return feature.process(the_request);
     }
 
-    public bool can_process(IContainInfoForOneWebRequest the_request)
+    public bool can_process(IContainRequestInfo the_request)
     {
       return request_spec(the_request);
     }

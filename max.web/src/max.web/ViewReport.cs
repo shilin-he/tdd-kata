@@ -15,7 +15,7 @@ namespace max.web
       this.response_factory = response_factory;
     }
 
-    public IContainResponseInfo process(IContainInfoForOneWebRequest the_request)
+    public IContainResponseInfo process(IContainRequestInfo the_request)
     {
       return response_factory(display_engine.render(query(the_request)));
     }

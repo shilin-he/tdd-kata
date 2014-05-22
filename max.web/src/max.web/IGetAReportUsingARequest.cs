@@ -1,4 +1,4 @@
 ﻿namespace max.web
 {
-  public delegate Report IGetAReportUsingARequest<out Report>(IContainInfoForOneWebRequest the_request);
+  public delegate Report IGetAReportUsingARequest<out Report>(IContainRequestInfo the_request);
 }
