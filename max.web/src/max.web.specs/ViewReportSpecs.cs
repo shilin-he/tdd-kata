@@ -30,9 +30,9 @@ namespace max.web.specs
         display_engine.setup(x => x.render(report)).Return(display_result);
 
         response = fake.an<IContainResponseInfo>();
-        depends.on<ICreateResponses>(data =>
+        response_factory = depends.on<ICreateResponses>(content =>
         {
-          data.ShouldEqual(display_result);
+          content.ShouldEqual(display_result);
           return response;
         });
       };
@@ -49,6 +49,7 @@ namespace max.web.specs
       static string display_result;
       static IContainResponseInfo response;
       static IContainResponseInfo result;
+      static ICreateResponses response_factory;
     }
   }
 }

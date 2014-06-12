@@ -30,6 +30,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="max.web, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\max.web.sample\Bin\max.web.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
     <Reference Include="RazorEngine">
       <HintPath>..\..\packages\RazorEngine.3.4.1\lib\net45\RazorEngine.dll</HintPath>
     </Reference>
@@ -50,20 +60,23 @@
     <Compile Include="DisplayEngine.cs" />
     <Compile Include="IContainResponseInfo.cs" />
     <Compile Include="IContainTemplateInfo.cs" />
+    <Compile Include="ICreateRedirectUrls.cs" />
     <Compile Include="ICreateResponses.cs" />
     <Compile Include="IDisplayInformation.cs" />
     <Compile Include="IFindViewTemplates.cs" />
     <Compile Include="IGetAReportUsingARequest.cs" />
     <Compile Include="IImplementOneAppFeature.cs" />
     <Compile Include="IMatchOneRequest.cs" />
+    <Compile Include="IProcessDataModels.cs" />
     <Compile Include="IProvideAppBaseDirectory.cs" />
     <Compile Include="IRenderTemplates.cs" />
-    <Compile Include="owin\OwinRequest.cs" />
+    <Compile Include="owin\OwinRequestWrapper.cs" />
     <Compile Include="razor\RazorFileTemplate.cs" />
     <Compile Include="razor\RazorTempalteRenderEngine.cs" />
     <Compile Include="razor\MaxRazorTemplateRenderEngine.cs" />
     <Compile Include="razor\RazorTemplateBase.cs" />
-    <Compile Include="ResponseInfo.cs" />
+    <Compile Include="OwinResponseWrapper.cs" />
+    <Compile Include="UpdateModel.cs" />
     <Compile Include="utils\IEnumerableExtensions.cs" />
     <Compile Include="ViewReport.cs" />
     <Compile Include="ViewTemplateRegistry.cs" />

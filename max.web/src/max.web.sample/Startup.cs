@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Web.UI.WebControls.WebParts;
+using System.Text.RegularExpressions;
 using max.web.owin;
 using max.web.razor;
 using Owin;
@@ -17,26 +17,49 @@ namespace max.web.sample
 
         var templates = new Dictionary<Type, IContainTemplateInfo>
         {
-          {typeof(Person), new RazorFileTemplate("tmpl/person.cshtml", provide_app_base_directory)}
+          {typeof(ViewPersonModel), new RazorFileTemplate("tmpl/view_person.cshtml", provide_app_base_directory)},
+          {typeof(EditPersonModel), new RazorFileTemplate("tmpl/edit_person.cshtml", provide_app_base_directory)}
         };
 
-        var display_engine = new DisplayEngine(new ViewTemplateRegistry(templates), new MaxRazorTemplateRenderEngine());
+        var display_engine = new DisplayEngine(new ViewTemplateRegistry(templates), new RazorTempalteRenderEngine());
 
         var commands = new List<IProcessOneWebRequest>
         {
-          new WebCommand( request => true, 
-            new ViewReport<Person>(request => new Person { first_name= "max", last_name = "he" }, 
+          new WebCommand(request =>
+            {
+              var pattern = @"/people/view/(\d+)";
+              return request.method.Equals("get", StringComparison.OrdinalIgnoreCase) &&
+                     Regex.IsMatch(request.path, pattern);
+            }, 
+            new ViewReport<ViewPersonModel>(request => new ViewPersonModel { first_name= "foo", last_name = "bar" }, 
                                    display_engine, 
-                                   tmpl_render_result => new ResponseInfo(tmpl_render_result)))
+                                   content => new OwinResponseWrapper(ctx.Response) {content = content, content_type = "text/html"})),
+          new WebCommand(request =>
+            {
+              var pattern = @"/people/edit/(\d+)";
+              return request.method.Equals("get", StringComparison.OrdinalIgnoreCase) &&
+                     Regex.IsMatch(request.path, pattern);
+            }, 
+            new ViewReport<EditPersonModel>(request => new EditPersonModel{ id = 11, first_name= "foo", last_name = "bar" }, 
+                                   display_engine, 
+                                   content => new OwinResponseWrapper(ctx.Response) {content = content, content_type = "text/html"})),
+          new WebCommand(request =>
+            {
+              var pattern = @"/people/edit/(\d+)";
+              return request.method.Equals("post", StringComparison.OrdinalIgnoreCase) &&
+                     Regex.IsMatch(request.path, pattern);
+            }, 
+            new UpdateModel<EditPersonModel>(redirect_url => new OwinResponseWrapper(ctx.Response) {redirect_url = redirect_url},
+                                             input => input,
+                                             output => "/people/view/" + output.id))
+
         };
 
         var handler = new WebHandler(new CommandRegistry(commands, request => new SpecialCaseWebCommand()));
 
-        var response_info = handler.handle(new OwinRequest());
+        var response_info = handler.handle(new OwinRequestWrapper(ctx.Request));
 
-        ctx.Response.ContentType = "text/html";
-
-        return ctx.Response.WriteAsync(response_info.content);
+        return response_info.write();
       });
     }
   }

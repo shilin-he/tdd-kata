@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace max.web
+﻿namespace max.web
 {
   public class ViewReport<Report> : IImplementOneAppFeature
   {

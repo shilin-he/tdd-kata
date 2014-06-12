@@ -72,9 +72,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <Content Include="tmpl\person.cshtml">
+    <Content Include="tmpl\view_person.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="tmpl\edit_person.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -86,7 +87,8 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Person.cs" />
+    <Compile Include="EditPersonModel.cs" />
+    <Compile Include="ViewPersonModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SpecialCaseWebCommand.cs" />
     <Compile Include="Startup.cs" />

@@ -1,4 +1,4 @@
 ﻿namespace max.web
 {
-  public delegate IContainResponseInfo ICreateResponses(string display_result);
+  public delegate IContainResponseInfo ICreateResponses(string content);
 }

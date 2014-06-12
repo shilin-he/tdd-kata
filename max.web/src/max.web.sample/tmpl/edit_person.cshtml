@@ -1,0 +1,16 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <title>title</title>
+</head>
+<body>
+  <form method="POST">
+    <input type="hidden" value="@Model.id" name="id" />
+    <div>
+      <p><input type="text" value="@Model.first_name" name="first_name" /></p>
+      <p><input type="text" value="@Model.last_name" name="last_name" /></p>
+    </div>
+    <button>Save</button>
+  </form>
+</body>
+</html>
