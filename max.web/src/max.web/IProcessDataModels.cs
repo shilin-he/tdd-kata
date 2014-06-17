@@ -2,5 +2,5 @@
 
 namespace max.web
 {
-  public delegate Model IProcessDataModels<Model>(Model input);
+  public delegate Output IProcessDataModels<Output>(IContainRequestInfo request);
 }

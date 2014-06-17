@@ -1,4 +1,4 @@
 ﻿namespace max.web
 {
-  public delegate string ICreateRedirectUrls<in Model>(Model model);
+  public delegate string ICreateRedirectUrls<in Output>(IContainRequestInfo request , Output model);
 }

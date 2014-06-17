@@ -6,10 +6,10 @@ using developwithpassion.specifications.extensions;
 namespace max.web.specs
 {
 
-  [Subject(typeof(UpdateModel<AnItem>))]
-  public class UpdateModelSpecs
+  [Subject(typeof(EditModel<AnItem>))]
+  public class EditModelSpecs
   {
-    public abstract class concern : Observes<UpdateModel<AnItem>>
+    public abstract class concern : Observes<EditModel<AnItem>>
     {
 
     }
@@ -22,18 +22,18 @@ namespace max.web.specs
         output_model = new AnItem();
 
         request = fake.an<IContainRequestInfo>();
-        request.setup(x => x.map<AnItem>()).Return(input_model);
 
-        data_handler = depends.on<IProcessDataModels<AnItem>>(input =>
+        data_handler = depends.on<IProcessDataModels<AnItem>>(req =>
         {
-          input.ShouldEqual(input_model);
+          req.ShouldEqual(request);
           return output_model;
         });
 
         redirect_url = "/people/11";
-        redirect_url_factory = depends.on<ICreateRedirectUrls<AnItem>>(model =>
+        redirect_url_factory = depends.on<ICreateRedirectUrls<AnItem>>((req, ouput) =>
         {
-          model.ShouldEqual(output_model);
+          req.ShouldEqual(request);
+          ouput.ShouldEqual(output_model);
           return redirect_url;
         });
 

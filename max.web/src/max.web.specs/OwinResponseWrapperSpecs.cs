@@ -18,78 +18,67 @@ namespace max.web.specs
 
     }
 
-    public class when_get_content : concern
+
+    public class when_finish : concern
     {
-      Establish c = () =>
+      public class and_no_redirect
       {
-        content = "test content";
-        depends.on(content);
-      };
 
-      Because b = () =>
-        result = sut.content;
+        Establish c = () =>
+        {
+          owin_response = fake.an<IOwinResponse>();
+          content_type = "text/plain";
+          content = "blah";
+        };
 
-      It returns_content_passed_in_from_constructor = () =>
-        result.ShouldEqual(content);
+        Because b = () =>
+        {
+          sut.content = content;
+          sut.content_type = content_type;
+          sut.finish(owin_response);
+        };
 
-      static string result;
-      static string content;
-    }
+        It calls_owin_response_methods = () =>
+        {
+          owin_response.received(x => x.WriteAsync(sut.content));
+          owin_response.AssertWasCalled(x => x.ContentType = content_type);
+          owin_response.AssertWasNotCalled(x => x.Redirect(sut.redirect_url));
+        };
 
-    public class when_set_redirect_url : concern
-    {
-      Establish c = () =>
+        static IOwinResponse owin_response;
+        static string content;
+        static string content_type;
+      }
+
+      public class and_redirect
       {
-        location = "/foo/bar";
-        owin_response = depends.on<IOwinResponse>();
-      };
 
-      Because b = () =>
-        sut.redirect_url = location;
+        Establish c = () =>
+        {
+          owin_response = fake.an<IOwinResponse>();
+          content_type = "text/plain";
+          content = "blah";
+        };
 
-      It calls_the_redirec_method_of_the_owin_response = () =>
-        owin_response.received(x => x.Redirect(location));
+        Because b = () =>
+        {
+          sut.content = content;
+          sut.content_type = content_type;
+          sut.redirect_url = "/redirect/to";
+          sut.finish(owin_response);
+        };
 
-      static IOwinResponse owin_response;
-      static string location;
-    }
+        It calls_owin_response_methods = () =>
+        {
+          owin_response.received(x => x.WriteAsync(sut.content));
+          owin_response.AssertWasCalled(x => x.ContentType = content_type);
+          owin_response.received(x => x.Redirect(sut.redirect_url));
+        };
 
-    public class when_set_content_type : concern
-    {
-      Establish c = () =>
-      {
-        content_type = "text/html";
-        owin_response = depends.on<IOwinResponse>();
-      };
-
-      Because b = () =>
-        sut.content_type = content_type;
-
-      It sets_content_type_of_the_owin_response = () =>
-      {
-        owin_response.AssertWasCalled(x => x.ContentType = content_type);
-      };
-
-      static IOwinResponse owin_response;
-      static string content_type;
-    }
-
-    public class when_write : concern
-    {
-      Establish c = () =>
-      {
-        owin_response = depends.on<IOwinResponse>();
-        content = "blah";
-      };
-
-      Because b = () =>
-        sut.write();
-
-      It calls_write_async_method_of_the_owin_response = () =>
-        owin_response.received(x => x.WriteAsync(sut.content));
-
-      static IOwinResponse owin_response;
-      static string content;
+        static IOwinResponse owin_response;
+        static string content;
+        static string content_type;
+      }
     }
 
   }

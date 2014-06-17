@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.Owin;
 
 namespace max.web
 {
@@ -7,6 +8,6 @@ namespace max.web
     string content { get; set; }
     string redirect_url { get; set; }
     string content_type { get; set; }
-    Task write();
+    Task finish(IOwinResponse owin_response);
   }
 }

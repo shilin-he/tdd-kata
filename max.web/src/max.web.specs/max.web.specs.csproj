@@ -77,8 +77,10 @@
     <Compile Include="RazorTempalteRenderEngineSpecs.cs" />
     <Compile Include="MaxRazorTemplateRenderEngineSpec.cs" />
     <Compile Include="OwinResponseWrapperSpecs.cs" />
-    <Compile Include="UpdateModelSpecs.cs" />
+    <Compile Include="EditModelSpecs.cs" />
+    <Compile Include="ViewCollectionSpecs.cs" />
     <Compile Include="ViewTemplateRegistrySpecs.cs" />
+    <Compile Include="WebCommandCollectionSpecs.cs" />
     <Compile Include="WebHandlerSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DisplayEngineSpecs.cs" />

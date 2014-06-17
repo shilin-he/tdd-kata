@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandRegistry.cs" />
+    <Compile Include="CommandTable.cs" />
     <Compile Include="DisplayEngine.cs" />
     <Compile Include="IContainResponseInfo.cs" />
     <Compile Include="IContainTemplateInfo.cs" />
@@ -76,11 +77,14 @@
     <Compile Include="razor\MaxRazorTemplateRenderEngine.cs" />
     <Compile Include="razor\RazorTemplateBase.cs" />
     <Compile Include="OwinResponseWrapper.cs" />
-    <Compile Include="UpdateModel.cs" />
+    <Compile Include="EditModel.cs" />
     <Compile Include="utils\IEnumerableExtensions.cs" />
+    <Compile Include="ViewCollection.cs" />
     <Compile Include="ViewReport.cs" />
+    <Compile Include="ViewTable.cs" />
     <Compile Include="ViewTemplateRegistry.cs" />
     <Compile Include="WebCommand.cs" />
+    <Compile Include="WebCommandCollection.cs" />
     <Compile Include="WebHandler.cs" />
     <Compile Include="IContainRequestInfo.cs" />
     <Compile Include="ICreateOneSpecialCaseWhenACommandIsNotFound.cs" />
@@ -91,8 +95,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="to_do.md" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="to_do.html">
+      <DependentUpon>to_do.md</DependentUpon>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
