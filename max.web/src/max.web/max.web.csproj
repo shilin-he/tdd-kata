@@ -60,10 +60,12 @@
     <Compile Include="CommandTable.cs" />
     <Compile Include="DisplayEngine.cs" />
     <Compile Include="IContainResponseInfo.cs" />
+    <Compile Include="IContainRouteInfo.cs" />
     <Compile Include="IContainTemplateInfo.cs" />
     <Compile Include="ICreateRedirectUrls.cs" />
     <Compile Include="ICreateResponses.cs" />
     <Compile Include="IDisplayInformation.cs" />
+    <Compile Include="IFindRoutesThatMatchRequests.cs" />
     <Compile Include="IFindViewTemplates.cs" />
     <Compile Include="IGetAReportUsingARequest.cs" />
     <Compile Include="IImplementOneAppFeature.cs" />

@@ -1,4 +1,5 @@
-﻿ using System.Linq;
+﻿ using System.Collections.Generic;
+ using System.Linq;
  using System.Net.Cache;
  using Machine.Specifications;
  using developwithpassion.specifications.rhinomocks;
@@ -45,10 +46,10 @@ namespace max.web.specs
     {
       Establish c = () =>
       {
-        path = "/request/path";
+        resource = "people";
+        operation = "view";
         report = new AnItem();
         request = fake.an<IContainRequestInfo>();
-        request.setup(x => x.path).Return(path);
         request.setup(x => x.method).Return("get");
         query = req =>
         {
@@ -58,11 +59,22 @@ namespace max.web.specs
         content = "blah";
         display_engine = depends.on<IDisplayInformation>();
         display_engine.setup(x => x.render(report)).Return(content);
+
+        route_parameters = new Dictionary<string, string>
+        {
+          {"resource", "people"},
+          {"operation", "view"}
+        };
+        route = fake.an<IContainRouteInfo>();
+        route.setup(x => x.get_route_parameters(request)).Return(route_parameters);
+
+        route_registry = depends.on<IFindRoutesThatMatchRequests>();
+        route_registry.setup(x => x.find_route_match(request)).Return(route);
       };
 
       Because b = () =>
       {
-        sut.add_view_command(path, query);
+        sut.add_view_command(resource, operation, query);
         result = sut.First();
       };
 
@@ -75,11 +87,15 @@ namespace max.web.specs
 
       static IGetAReportUsingARequest<AnItem> query;
       static IContainRequestInfo request;
-      static string path;
       static AnItem report;
       static IProcessOneWebRequest result;
       static IDisplayInformation display_engine;
       static string content;
+      static string resource;
+      static string operation;
+      static IFindRoutesThatMatchRequests route_registry;
+      static IContainRouteInfo route;
+      static IDictionary<string, string> route_parameters;
     }
 
     public class when_add_an_edit_command : concern

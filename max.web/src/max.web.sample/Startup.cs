@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using System.Web.SessionState;
-using max.web.owin;
-using max.web.razor;
+﻿using max.web.owin;
 using Owin;
 
 namespace max.web.sample
@@ -22,7 +17,7 @@ namespace max.web.sample
       {
         var handler = new WebHandler(new CommandRegistry(CommandTable.commands, request => new SpecialCaseWebCommand()));
 
-        var response_info = handler.handle(new OwinRequestWrapper(ctx.Request));
+        var response_info = handler.handle(new OwinRequestWrapper(ctx.Request, null));
 
         return response_info.finish(ctx.Response);
       });
@@ -30,15 +25,16 @@ namespace max.web.sample
 
     private static void register_views(ViewCollection views)
     {
-      views.add_view_from_file(typeof(ViewPersonModel), "tmpl/view_person.cshtml");
-      views.add_view_from_file(typeof(EditPersonModel), "tmpl/edit_person.cshtml");
+      views.add_view_from_file<ViewPersonModel>("tmpl/view_person.cshtml");
+      views.add_view_from_file<EditPersonModel>("tmpl/edit_person.cshtml");
     }
 
     private static void register_commands(WebCommandCollection commands)
     {
-      commands.add_view_command(@"/people/(\d+)", req => new ViewPersonModel { first_name = "foo", last_name = "bar" });
-      commands.add_view_command(@"/people/update/(\d+)", req => new EditPersonModel { first_name = "foo", last_name = "bar" });
+      commands.add_view_command("people", "view", req => new ViewPersonModel { first_name = "foo", last_name = "bar" });
+      commands.add_view_command("people", "edit", req => new EditPersonModel { first_name = "foo", last_name = "bar" });
       commands.add_edit_command(@"/people/update/(\d+)", req => 11, (req, output) => "/people/11");
+      commands.add_edit_command(@"/people/delete/(\d+)", req => (object)null, (req, output) => "/people/11");
     }
   }
 }

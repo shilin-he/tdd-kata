@@ -10,10 +10,12 @@ namespace max.web
   {
     IList<IProcessOneWebRequest> commands = new List<IProcessOneWebRequest>();
     IDisplayInformation display_engine;
+    IFindRoutesThatMatchRequests route_registry;
 
-    public WebCommandCollection(IDisplayInformation display_engine)
+    public WebCommandCollection(IDisplayInformation display_engine, IFindRoutesThatMatchRequests route_registry)
     {
       this.display_engine = display_engine;
+      this.route_registry = route_registry;
     }
 
     public IEnumerator<IProcessOneWebRequest> GetEnumerator()
@@ -31,10 +33,16 @@ namespace max.web
       commands.Add(new WebCommand(request_spec, feature));
     }
 
-    public void add_view_command<ViewModel>(string url_path_pattern, IGetAReportUsingARequest<ViewModel> query)
+    public void add_view_command<ViewModel>(string resource, string operation, IGetAReportUsingARequest<ViewModel> query)
     {
       IMatchOneRequest request_spec =
-        req => req.method.Equals("get", StringComparison.OrdinalIgnoreCase) && Regex.IsMatch(req.path, url_path_pattern);
+        req =>
+        {
+          var route_parameters = route_registry.find_route_match(req).get_route_parameters(req);
+          return req.method.Equals("get", StringComparison.OrdinalIgnoreCase) &&
+            route_parameters["resource"].Equals(resource, StringComparison.OrdinalIgnoreCase) &&
+            route_parameters["operation"].Equals(operation, StringComparison.OrdinalIgnoreCase);
+        };
 
       IImplementOneAppFeature view_report = new ViewReport<ViewModel>(query, display_engine,
         content => new OwinResponseWrapper { content = content, content_type = "text/html" });
@@ -47,7 +55,7 @@ namespace max.web
       IMatchOneRequest request_spec =
         req => req.method.Equals("post", StringComparison.OrdinalIgnoreCase) && Regex.IsMatch(req.path, url_path_pattern);
 
-      ICreateResponses response_factory = data => new OwinResponseWrapper {redirect_url = data};
+      ICreateResponses response_factory = data => new OwinResponseWrapper { redirect_url = data };
 
       IImplementOneAppFeature update_model = new EditModel<Output>(response_factory, data_handler,
         redirect_url_factory);

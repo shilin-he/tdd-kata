@@ -23,7 +23,7 @@ namespace max.web.specs
 
       Because b = () =>
       {
-        sut.add_view_from_file(typeof(AnItem), template_path);
+        sut.add_view_from_file<AnItem>(template_path);
         result = sut[typeof(AnItem)];
       };
 

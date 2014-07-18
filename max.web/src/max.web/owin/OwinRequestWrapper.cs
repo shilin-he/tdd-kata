@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using Microsoft.Owin;
 
 namespace max.web.owin
@@ -9,10 +8,12 @@ namespace max.web.owin
   public class OwinRequestWrapper : IContainRequestInfo
   {
     IOwinRequest owin_request;
+    IFindRoutesThatMatchRequests route_registry;
 
-    public OwinRequestWrapper(IOwinRequest owin_request)
+    public OwinRequestWrapper(IOwinRequest owin_request, IFindRoutesThatMatchRequests route_registry)
     {
       this.owin_request = owin_request;
+      this.route_registry = route_registry;
     }
 
     public string path

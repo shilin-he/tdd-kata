@@ -1,4 +1,7 @@
-﻿namespace max.web
+﻿using System.Collections.Generic;
+using System.Reflection.Emit;
+
+namespace max.web
 {
   public interface IContainRequestInfo
   {

@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
+using System.Security.Policy;
 using System.Threading;
 using System.Threading.Tasks;
 using Machine.Specifications;
@@ -27,6 +29,7 @@ namespace max.web.specs
       {
         path = "/foo/bar";
         path_string = new PathString(path);
+        depends.on<IFindRoutesThatMatchRequests>();
         owin_request = depends.on<IOwinRequest>();
         owin_request.setup(x => x.Path).Return(path_string);
       };
@@ -69,7 +72,7 @@ namespace max.web.specs
       {
         var foo = "fooooooooo";
         var bar = new DateTime(2099, 1, 1);
-        input_model = new AnItem() {foo = foo, bar = bar};
+        input_model = new AnItem() { foo = foo, bar = bar };
         form_collection = fake.an<IFormCollection>();
         form_collection.setup(x => x.Get("foo")).Return(foo);
         form_collection.setup(x => x.Get("bar")).Return(bar.ToString(CultureInfo.InvariantCulture));
@@ -91,6 +94,6 @@ namespace max.web.specs
       static IOwinRequest owin_request;
       static IFormCollection form_collection;
     }
-    
+
   }
 }

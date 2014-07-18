@@ -5,7 +5,7 @@ namespace max.web
   public class CommandTable
   {
     static WebCommandCollection _instance = new WebCommandCollection(
-      new DisplayEngine(new ViewTemplateRegistry(ViewTable.views), new RazorTempalteRenderEngine()));
+      new DisplayEngine(new ViewTemplateRegistry(ViewTable.views), new RazorTempalteRenderEngine()), null);
 
     public static WebCommandCollection commands
     {
